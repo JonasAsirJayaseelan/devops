@@ -121,8 +121,10 @@ volumes:
     driver: local
 EOF
 
-docker compose up -d
-docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+docker compose up -d   if error  docker compose down -v
+docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword   ///  docker logs -f jenkins
+
+
 
 # If any error:
 docker compose down
@@ -371,4 +373,5 @@ kubectl delete svc my-nginx
 kubectl delete all --all -n default
 minikube stop
 minikube delete
+
 
